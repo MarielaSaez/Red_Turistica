@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "202266572833",
+    "project_id": "app-red-social-d06f1",
+    "storage_bucket": "app-red-social-d06f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202266572833:android:cd6428884b7cd7bb190b60",
+        "android_client_info": {
+          "package_name": "com.example.appchat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGbpYXkA9t7gpBoAhb0k1CbRR7pZbsbTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
