@@ -12,12 +12,10 @@ import com.example.appchat.providers.UserProvider;
 public class RegisterViewModel extends ViewModel {
     private final AuthProvider authProvider;
     private final UserProvider userProvider;
-
     public RegisterViewModel() {
         authProvider = new AuthProvider();
         userProvider = new UserProvider();
     }
-
     public LiveData<String> register(User user) {
         MutableLiveData<String> registerResult = new MutableLiveData<>();
 
@@ -38,8 +36,6 @@ public class RegisterViewModel extends ViewModel {
                 }
             }
         });
-
-
         return registerResult;
     }
 }

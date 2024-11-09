@@ -13,10 +13,13 @@
         android:theme="@style/Theme.AppChat"
         tools:targetApi="31">
         <activity
-            android:name=".view.UserActivity"
+            android:name=".view.PostActivity"
             android:exported="false" />
         <activity
             android:name=".view.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.UserActivity"
             android:exported="false" />
         <activity
             android:name=".view.RegisterActivity"

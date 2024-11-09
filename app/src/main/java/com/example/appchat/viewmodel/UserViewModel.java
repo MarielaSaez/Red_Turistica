@@ -15,20 +15,17 @@ import androidx.lifecycle.Observer;
 public class UserViewModel extends ViewModel {
     private final AuthProvider authProvider;
     private final UserProvider userProvider;
-    private final MutableLiveData<User> currentUser = new MutableLiveData<>();
-    private final MutableLiveData<String> operationStatus = new MutableLiveData<>();
-
+    private final MutableLiveData<User> currentUser;
+    private final MutableLiveData<String> estado;
     public UserViewModel() {
         authProvider = new AuthProvider();
         userProvider = new UserProvider();
+        estado=new MutableLiveData<>();
+        currentUser=new MutableLiveData<>();
     }
-
-    public LiveData<User> getCurrentUser() {
-        return currentUser;
-    }
-
+    public LiveData<User> getCurrentUser() {return currentUser;  }
     public LiveData<String> getOperationStatus() {
-        return operationStatus;
+        return estado;
     }
 
     public void createUser(User user, LifecycleOwner lifecycleOwner) {
@@ -37,14 +34,14 @@ public class UserViewModel extends ViewModel {
                 user.setId(uid);
                 userProvider.createUser(user).observe(lifecycleOwner, status -> {
                     if (status != null) {
-                        operationStatus.setValue(status);
+                        estado.setValue(status);
 
                     } else {
-                        operationStatus.setValue("Error al crear usuario en Firestore");
+                        estado.setValue("Error al crear usuario en Firestore");
                     }
                 });
             } else {
-                operationStatus.setValue("Error al registrar usuario en FirebaseAuth");
+                estado.setValue("Error al registrar usuario en FirebaseAuth");
             }
         });
     }
@@ -55,7 +52,7 @@ public class UserViewModel extends ViewModel {
         result.observe(lifecycleOwner, new Observer<String>() {
             @Override
             public void onChanged(String status) {
-                operationStatus.setValue(result.getValue());
+                estado.setValue(result.getValue());
             }
         });
     }
@@ -65,7 +62,7 @@ public class UserViewModel extends ViewModel {
         result.observe(lifecycleOwner, new Observer<String>() {
             @Override
             public void onChanged(String status) {
-                operationStatus.setValue(status);
+                estado.setValue(status);
             }
         });
     }
@@ -79,10 +76,9 @@ public class UserViewModel extends ViewModel {
                     Log.d("User Info", "ID: " + foundUser.getId() + ", Username: " + foundUser.getUsername());
                     currentUser.setValue(foundUser);
                 } else {
-                    operationStatus.setValue("No encontrado");
+                    estado.setValue("No encontrado");
                 }
             }
         });
     }
-
 }

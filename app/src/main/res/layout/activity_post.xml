@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.PostActivity">
+
+    <!-- AppBarLayout con Toolbar para título fijo -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CREAR PUBLICACIÓN"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_gravity="center" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- ScrollView para el contenido desplazable -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Campo Título del Artículo -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/itPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Título de artículo"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Selección de Fotos -->
+            <ImageView
+                android:id="@+id/btnAgregarImagen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_image"
+                android:layout_marginBottom="8dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvImagenes"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal" />
+
+            <!-- Descripción -->
+            <EditText
+                android:id="@+id/etDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:hint="Describe tu experiencia..."
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:padding="8dp"
+                android:layout_marginTop="16dp" />
+
+            <!-- Ubicación -->
+            <AutoCompleteTextView
+                android:id="@+id/etUbicacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ubicación"
+                android:drawableLeft="@drawable/ic_location"
+                android:layout_marginTop="16dp" />
+
+            <!-- Categoría del Viaje -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Categoría del viaje"
+                android:layout_marginTop="16dp" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupCategoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAventura"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aventura" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCultural"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cultural" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPlaya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Playa" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipGastronomico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gastronómico" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipNaturaleza"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Naturaleza" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Duración del Viaje -->
+            <EditText
+                android:id="@+id/etDuracion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Duración del viaje (e.j., 3 días)"
+                android:minHeight="48dp"
+                android:layout_marginTop="16dp" />
+
+            <!-- Presupuesto Aproximado -->
+            <EditText
+                android:id="@+id/etPresupuesto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Presupuesto estimado (USD)"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:layout_marginTop="16dp" />
+
+            <!-- Botón Publicar -->
+            <Button
+                android:id="@+id/btnPublicar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Publicar"
+                android:backgroundTint="@color/red"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

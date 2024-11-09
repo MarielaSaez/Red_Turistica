@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AppChat</string>
+
+    <string name="Home">Home</string>
+    <string name="Chats">Chats</string>
+    <string name="Perfil">Perfil</string>
+    <string name="Filtros">Filtros</string>
+
 </resources>

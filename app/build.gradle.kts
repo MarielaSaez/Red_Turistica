@@ -29,6 +29,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+
     }
     buildFeatures{
         viewBinding=true
@@ -36,14 +37,20 @@ android {
 }
 dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
+
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.activity:activity-ktx:1.7.2")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.cardview:cardview:1.0.0") // Usar CardView de AndroidX
-    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("androidx.recyclerview:recyclerview:1.3.0")
+
     implementation(libs.firebase.auth)
     implementation("com.google.firebase:firebase-firestore:25.1.1")
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.google.firebase:firebase-analytics")
     implementation(libs.activity)
+    implementation(libs.firebase.database)
+
 
     // Dependencias de testing
     testImplementation("junit:junit:4.13.2")

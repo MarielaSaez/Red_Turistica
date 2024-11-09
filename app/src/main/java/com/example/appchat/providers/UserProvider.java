@@ -10,14 +10,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-
 public class UserProvider {
     private final FirebaseFirestore firestore;
     private static final String USERS_COLLECTION = "users";
-    private MutableLiveData<User> userData = new MutableLiveData<>();
-
     public UserProvider() {
-
         firestore = FirebaseFirestore.getInstance();
     }
 
@@ -33,8 +29,6 @@ public class UserProvider {
                 });
         return result;
     }
-
-
     public LiveData<User> getUser(String mail) {
         MutableLiveData<User> userData = new MutableLiveData<>();
         firestore.collection(USERS_COLLECTION)

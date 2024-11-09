@@ -5,7 +5,11 @@
         <!-- <item name="colorPrimary">@color/red</item> -->
         <item name="android:statusBarColor">@color/red_osc</item>
         <item name="android:windowLightStatusBar">true</item>
-    </style>
 
+    </style>
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorPrimary">@color/red_osc</item>
+        <item name="colorOnPrimary">@color/red</item>
+    </style>
     <style name="Theme.AppChat" parent="Base.Theme.AppChat" />
 </resources>
