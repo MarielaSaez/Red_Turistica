@@ -6,19 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.PostActivity">
-
-    <!-- AppBarLayout con Toolbar para título fijo -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/red">
-
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/red"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -27,53 +23,44 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:layout_gravity="center" />
-
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
-
-    <!-- ScrollView para el contenido desplazable -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-
         android:padding="16dp">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Campo Título del Artículo -->
+            android:orientation="vertical"
+            android:layout_marginTop="40dp">
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/itPassword"
+                    android:id="@+id/itTitulo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Título de artículo"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:importantForAccessibility="yes" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Selección de Fotos -->
             <ImageView
                 android:id="@+id/btnAgregarImagen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_image"
-                android:layout_marginBottom="8dp" />
-
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvImagenes"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:orientation="horizontal" />
-
-            <!-- Descripción -->
+                android:orientation="horizontal"
+                android:visibility="gone"
+                />
             <EditText
                 android:id="@+id/etDescripcion"
                 android:layout_width="match_parent"
@@ -81,25 +68,22 @@
                 android:hint="Describe tu experiencia..."
                 android:inputType="textMultiLine"
                 android:gravity="top"
-                android:padding="8dp"
-                android:layout_marginTop="16dp" />
-
-            <!-- Ubicación -->
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:minHeight="20dp" />
             <AutoCompleteTextView
                 android:id="@+id/etUbicacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Ubicación"
                 android:drawableLeft="@drawable/ic_location"
-                android:layout_marginTop="16dp" />
-
-            <!-- Categoría del Viaje -->
+                android:layout_marginTop="8dp"
+                android:minHeight="48dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Categoría del viaje"
-                android:layout_marginTop="16dp" />
-
+                android:text="Tipo de viaje"
+                android:layout_marginTop="10dp" />
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroupCategoria"
                 android:layout_width="match_parent"
@@ -111,43 +95,45 @@
                     android:id="@+id/chipAventura"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Aventura" />
+                    android:text="Aventura"
+                    android:textSize="12dp"
+                    tools:ignore="TextSizeCheck" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipCultural"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cultural" />
-
+                    android:text="Cultural"
+                    android:textSize="12dp"
+                    tools:ignore="TextSizeCheck" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipPlaya"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Playa" />
+                    android:text="Playa"
+                    android:textSize="12dp"/>
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipGastronomico"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gastronómico" />
-
+                    android:text="Gastronomia"
+                    android:textSize="12dp"
+                    tools:ignore="TextSizeCheck" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipNaturaleza"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Naturaleza" />
+                    android:text="Naturaleza"
+                    android:textSize="12dp"/>
             </com.google.android.material.chip.ChipGroup>
-
-            <!-- Duración del Viaje -->
             <EditText
                 android:id="@+id/etDuracion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Duración del viaje (e.j., 3 días)"
                 android:minHeight="48dp"
-                android:layout_marginTop="16dp" />
-
-            <!-- Presupuesto Aproximado -->
+                android:layout_marginTop="10dp" />
             <EditText
                 android:id="@+id/etPresupuesto"
                 android:layout_width="match_parent"
@@ -155,9 +141,7 @@
                 android:hint="Presupuesto estimado (USD)"
                 android:inputType="numberDecimal"
                 android:minHeight="48dp"
-                android:layout_marginTop="16dp" />
-
-            <!-- Botón Publicar -->
+                android:layout_marginTop="10dp" />
             <Button
                 android:id="@+id/btnPublicar"
                 android:layout_width="match_parent"
@@ -165,8 +149,8 @@
                 android:text="Publicar"
                 android:backgroundTint="@color/red"
                 android:textColor="@android:color/white"
-                android:layout_marginTop="24dp" />
-
+                android:layout_marginTop="20dp" />
         </LinearLayout>
     </ScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+

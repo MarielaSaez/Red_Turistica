@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "202266572833",
-    "project_id": "app-red-social-d06f1",
-    "storage_bucket": "app-red-social-d06f1.appspot.com"
+    "project_number": "126908276590",
+    "project_id": "red-de-turismo",
+    "storage_bucket": "red-de-turismo.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:202266572833:android:cd6428884b7cd7bb190b60",
+        "mobilesdk_app_id": "1:126908276590:android:e241710ddb907bd6e2eb7f",
         "android_client_info": {
           "package_name": "com.example.appchat"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDGbpYXkA9t7gpBoAhb0k1CbRR7pZbsbTg"
+          "current_key": "AIzaSyDSphz7QJcOH55OlZnqKyV0YFMGbPJcSQ4"
         }
       ],
       "services": {

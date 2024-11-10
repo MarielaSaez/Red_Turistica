@@ -10,8 +10,8 @@ public class Post {
     private String duracion;
     private double presupuesto;
     private List<String> imagenes;
+    private String imageURI;
 
-    // Constructor vacío requerido para Firebase
     public Post() {}
 
     public Post(String titulo, String descripcion, String ubicacion, String categoria, String duracion, double presupuesto, List<String> imagenes) {
@@ -21,7 +21,16 @@ public class Post {
         this.categoria = categoria;
         this.duracion = duracion;
         this.presupuesto = presupuesto;
-        this.imagenes = imagenes;
+       // this.imagenes = imagenes;
+        this.imageURI=imageURI;
+    }
+
+    public String getImageURI() {
+        return imageURI;
+    }
+
+    public void setImageURI(String imageURI) {
+        this.imageURI = imageURI;
     }
 
     // Getters y Setters

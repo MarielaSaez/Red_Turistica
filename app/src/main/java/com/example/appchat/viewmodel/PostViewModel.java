@@ -10,17 +10,17 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class PostViewModel extends ViewModel {
+     private final MutableLiveData<Boolean> postSuccess = new MutableLiveData<>();
+     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-    private final MutableLiveData<Boolean> postSuccess = new MutableLiveData<>();
-    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-    public LiveData<Boolean> getPostSuccess() {
-        return postSuccess;
-    }
+     public LiveData<Boolean> getPostSuccess() {
+         return postSuccess;
+     }
 
     public void publishPost(Post post) {
-        DatabaseReference postRef = database.getReference("posts").push();
-        postRef.setValue(post).addOnCompleteListener(task -> postSuccess.setValue(task.isSuccessful()));
+         DatabaseReference postRef = database.getReference("posts").push();
+         postRef.setValue(post).addOnCompleteListener(task -> postSuccess.setValue(task.isSuccessful()));
     }
+
 }
 
