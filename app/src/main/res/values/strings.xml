@@ -1,10 +1,27 @@
 <resources>
     <string name="app_name">AppChat</string>
-
-    <string name="Home">Home</string>
+    <string name="mis_experiencias">Mis experiencias</string>
     <string name="Chats">Chats</string>
     <string name="Perfil">Perfil</string>
     <string name="Filtros">Filtros</string>
     <string name="image_description">Describe tu imagen</string>
+    <string name="titulo_ppal">Realizar un Post</string>
+    <string name="titulo_post">Lugar que Visitaste</string>
 
+    <string name="descripcion">Describe tu experiencia...</string>
+    <string name="presupuesto"> Presupuesto estimado (USD)</string>
+    <string name="duracion">Duración del viaje (ej. 3 días) </string>
+    <string name="publicar">Publicar</string>
+
+    <string-array name="categorias_array">
+        <item>Naturaleza</item>
+        <item>Montaña</item>
+        <item>Aventura</item>
+        <item>Cultura</item>
+        <item>Playa</item>
+    </string-array>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+    <string name="back4app_app_id">aza5SthTqyxgDUruRcmvKINdxzroFUwVM2MdRDTf</string>
+    <string name="back4app_client_key">um19Fl8kW30QF91Q02m2U1TgRbZ8qW3Iwh7IFw52</string>
 </resources>

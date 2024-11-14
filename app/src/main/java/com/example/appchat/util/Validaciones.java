@@ -1,9 +1,22 @@
 package com.example.appchat.util;
 
 public class Validaciones {
-    public static boolean validarUsuario(String usuario) {
-        return usuario != null && !usuario.isEmpty() && usuario.length() > 3;
+    public static boolean validarTexto(String texto) {
+        return texto != null
+                && !texto.isEmpty()
+                && texto.length() >= 3;
+              //  && usuario.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$");
     }
+
+    public static int validarNumero(String numero) {
+        try {
+            int valor = Integer.parseInt(numero);
+            return valor >= 0 ? valor : -1; // Retorna el número si es positivo; de lo contrario, retorna -1
+        } catch (NumberFormatException e) {
+            return -1; // Retorna -1 si no es un número válido
+        }
+    }
+
     public static boolean validarMail(String email) {
         String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         return email != null && email.matches(emailPattern);

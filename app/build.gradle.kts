@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -26,31 +25,32 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-
     }
-    buildFeatures{
-        viewBinding=true
+
+    buildFeatures {
+        buildConfig = true
+        viewBinding = true
     }
 }
-dependencies {
-    implementation("androidx.appcompat:appcompat:1.7.0")
 
+dependencies {
+
+
+    implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.activity:activity-ktx:1.7.2")
+    implementation("androidx.activity:activity:1.7.2")
+    implementation("androidx.fragment:fragment-ktx:1.6.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.cardview:cardview:1.0.0") // Usar CardView de AndroidX
+    implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.3.0")
 
-    implementation(libs.firebase.auth)
-    implementation("com.google.firebase:firebase-firestore:25.1.1")
-    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
-    implementation("com.google.firebase:firebase-analytics")
-    implementation(libs.activity)
-    implementation(libs.firebase.database)
-
+    implementation ("androidx.lifecycle:lifecycle-viewmodel:2.8.7")  // Verifica la última versión
+    implementation ("androidx.lifecycle:lifecycle-livedata:2.8.7")
 
     // Dependencias de testing
     testImplementation("junit:junit:4.13.2")
@@ -60,11 +60,29 @@ dependencies {
     // Glide para manejar imágenes
     implementation("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
-    implementation ("io.github.florent37:shapeofview:1.4.7")
 
-    // retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    // ShapeOfView
+    implementation("io.github.florent37:shapeofview:1.4.7")
 
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Parse SDK
+    implementation("com.github.parse-community.Parse-SDK-Android:bolts-tasks:4.3.0")
+    implementation("com.github.parse-community.Parse-SDK-Android:parse:4.3.0")
+    //implementation("com.parse:parse-android:2.28.0")
+    // For building media playback UIs
+    implementation ("androidx.media3:media3-ui:1.4.1")
+    // For building media playback UIs for Android TV using the Jetpack Leanback library
+    implementation ("androidx.media3:media3-ui-leanback:1.4.1")
 
 }
+
+
+
+
+
+
+
+

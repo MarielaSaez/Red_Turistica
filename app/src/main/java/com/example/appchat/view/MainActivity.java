@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.appchat.databinding.ActivityMainBinding;
 import com.example.appchat.util.Validaciones;
 import com.example.appchat.viewmodel.MainViewModel;
+import com.example.appchat.viewmodel.MainViewModelFactory;
+
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private MainViewModel viewModel;
@@ -16,7 +18,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+
+        viewModel = new ViewModelProvider(this, new MainViewModelFactory(this)).get(MainViewModel.class);
+     
+
         manejarEventos();
     }
     private void manejarEventos() {
@@ -41,10 +46,12 @@ public class MainActivity extends AppCompatActivity {
                     showToast("Password incorrecto");
                     return;
                 }
-                // Observa el resultado del login
-        viewModel.login(email, pass).observe(MainActivity.this, loginSuccessful -> {
-               if (loginSuccessful) {
+
+        viewModel.login(email, pass).observe(MainActivity.this, user_id -> {
+               if (user_id!=null) {
+
                    Intent intent=new Intent(MainActivity.this,HomeActivity.class);
+                   intent.putExtra("user_id",user_id);
                    startActivity(intent);
                } else {
                    showToast("Login fallido");

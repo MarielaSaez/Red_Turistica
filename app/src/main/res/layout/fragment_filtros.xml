@@ -6,12 +6,24 @@
     tools:context=".view.fragments.FiltrosFragment">
 
 
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Filtros"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:textColor="@color/black"/>
+        android:layout_height="wrap_content"
+        android:background="@color/red">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filtros"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_gravity="center" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
 </FrameLayout>

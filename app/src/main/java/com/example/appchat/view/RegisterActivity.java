@@ -3,29 +3,43 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.appchat.databinding.ActivityRegisterBinding;
 import com.example.appchat.model.User;
 import com.example.appchat.util.Validaciones;
 import com.example.appchat.viewmodel.RegisterViewModel;
-
 public class RegisterActivity extends AppCompatActivity {
     private ActivityRegisterBinding binding;
     private RegisterViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
         viewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
+
+
+        viewModel.getRegisterResult().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String result) {
+                    showToast(result);
+            }
+        });
+
+
         manejarEventos();
     }
+
     private void manejarEventos() {
         // Evento volver a login
         binding.circleImageBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                finish();  // Cierra la actividad actual (vuelve a login)
             }
         });
 
@@ -33,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         binding.btRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                realizarRegistro();
+                realizarRegistro();  // Realiza el proceso de registro
             }
         });
     }
@@ -44,7 +58,8 @@ public class RegisterActivity extends AppCompatActivity {
         String pass = binding.itPassword.getText().toString().trim();
         String pass1 = binding.itPassword1.getText().toString().trim();
 
-        if (!Validaciones.validarUsuario(usuario)) {
+        // Validaciones de entrada
+        if (!Validaciones.validarTexto(usuario)) {
             showToast("Usuario incorrecto");
             return;
         }
@@ -60,15 +75,12 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        User user = new User(usuario, email, pass);
-        viewModel.register(user).observe(this, result -> {
-            showToast(result);
-        });
-    }
 
+        User user = new User(usuario, email, pass);
+        viewModel.register(user);
+    }
 
     private void showToast(String message) {
         Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
-        finish();
     }
 }

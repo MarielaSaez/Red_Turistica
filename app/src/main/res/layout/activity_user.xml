@@ -22,7 +22,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/red" />
+                android:background="@color/primary" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:text="Crear"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/primary"
                 android:textColor="@color/white" />
 
             <Button
@@ -181,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:text="Leer"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/primary"
                 android:textColor="@color/white"
                 android:layout_marginLeft="10dp" />
 
@@ -191,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:text="Actualizar"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/primary"
                 android:textColor="@color/white"
                 android:layout_marginTop="10dp" />
 
@@ -201,7 +201,7 @@
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:text="Eliminar"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/primary"
                 android:textColor="@color/white"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp" />

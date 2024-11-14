@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.UploadActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="20dp"
+            android:background="@drawable/lavender_border">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_ppal"
+                android:textSize="30sp"
+                android:textAlignment="center"
+                android:textColor="@color/lavender"/>
+
+            <FrameLayout
+                android:layout_width="312dp"
+                android:layout_height="97dp">
+
+                <ImageView
+                    android:id="@+id/uploadImage"
+                    android:layout_width="120dp"
+                    android:layout_height="85dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/uploadimg"
+                    android:background="@drawable/transparent_background"/>
+            </FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="-5dp"
+                android:background="@drawable/lavender_border"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_image"
+                android:visibility="gone"/>
+
+            <EditText
+                android:id="@+id/itTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/lavender_border"
+                android:layout_marginTop="15dp"
+                android:padding="16dp"
+                android:hint="@string/titulo_post"
+                android:gravity="start|center_vertical"
+                android:textColor="@color/lavender"
+                android:textSize="13sp"/>
+
+            <EditText
+                android:id="@+id/etDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/lavender_border"
+                android:layout_marginTop="10dp"
+                android:padding="16dp"
+                android:hint="@string/descripcion"
+                android:gravity="start|center_vertical"
+                android:textColor="@color/lavender"
+                android:textSize="13sp"/>
+
+            <!-- Spinner de categoría -->
+            <Spinner
+                android:id="@+id/spinnerCategoria"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/lavender_border"
+                android:padding="16dp"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/lavender"
+                android:textSize="13sp"
+                android:textAlignment="center" />
+            <EditText
+                android:id="@+id/etDuracion"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/lavender_border"
+                android:layout_marginTop="10dp"
+                android:padding="16dp"
+                android:hint="@string/duracion"
+                android:gravity="start|center_vertical"
+                android:inputType="number"
+                android:textColor="@color/lavender"
+                android:textSize="13sp"/>
+
+            <EditText
+                android:id="@+id/etPresupuesto"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/presupuesto"
+                android:inputType="numberDecimal"
+                android:background="@drawable/lavender_border"
+                android:layout_marginTop="10dp"
+                android:padding="16dp"
+                android:gravity="start|center_vertical"
+                android:textColor="@color/lavender"
+                android:textSize="13sp"/>
+
+            <Button
+                android:id="@+id/btnPublicar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="@string/publicar"
+                android:textSize="18sp"
+                android:layout_marginTop="15dp"
+                app:cornerRadius="20dp"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</ScrollView>

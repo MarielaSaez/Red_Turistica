@@ -1,9 +1,12 @@
 package com.example.appchat.view;
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.appchat.databinding.ActivityUserBinding;
 import com.example.appchat.model.User;
 import com.example.appchat.viewmodel.UserViewModel;
+import com.example.appchat.viewmodel.UserViewModelFactory;
 
 import android.util.Log;
 import android.view.View;
@@ -13,13 +16,15 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 public class UserActivity extends AppCompatActivity {
     private ActivityUserBinding binding;
-    private UserViewModel viewModel;
+    private  UserViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        viewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        viewModel = new ViewModelProvider(this, new UserViewModelFactory(this)).get(UserViewModel.class);
+
+
         esperarObservers();
         manejarEventos();
     }

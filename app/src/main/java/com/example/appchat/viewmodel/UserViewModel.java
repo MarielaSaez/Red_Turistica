@@ -1,5 +1,6 @@
 package com.example.appchat.viewmodel;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.LifecycleOwner;
@@ -17,8 +18,8 @@ public class UserViewModel extends ViewModel {
     private final UserProvider userProvider;
     private final MutableLiveData<User> currentUser;
     private final MutableLiveData<String> estado;
-    public UserViewModel() {
-        authProvider = new AuthProvider();
+    public UserViewModel(Context context) {
+        authProvider = new AuthProvider(context);
         userProvider = new UserProvider();
         estado=new MutableLiveData<>();
         currentUser=new MutableLiveData<>();

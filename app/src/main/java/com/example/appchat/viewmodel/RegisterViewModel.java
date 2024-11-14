@@ -1,44 +1,39 @@
 package com.example.appchat.viewmodel;
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
-
 import com.example.appchat.model.User;
-import com.example.appchat.providers.AuthProvider;
-import com.example.appchat.providers.UserProvider;
-
+import com.parse.ParseUser;
 
 public class RegisterViewModel extends ViewModel {
-    private final AuthProvider authProvider;
-    private final UserProvider userProvider;
-    public RegisterViewModel() {
-        authProvider = new AuthProvider();
-        userProvider = new UserProvider();
-    }
-    public LiveData<String> register(User user) {
-        MutableLiveData<String> registerResult = new MutableLiveData<>();
+    private final MutableLiveData<String> registerResult = new MutableLiveData<>();
 
-        // Primero registra al usuario en Firebase Authentication
-        authProvider.signUp(user.getEmail(), user.getPassword()).observeForever(new Observer<String>() {
-            @Override
-            public void onChanged(String uid) {
-                if (uid != null) {
-                    user.setId(uid);
-                    userProvider.createUser(user).observeForever(new Observer<String>() {
-                        @Override
-                        public void onChanged(String result) {
-                            registerResult.setValue(result);
-                        }
-                    });
-                } else {
-                    registerResult.setValue("Error en la autenticación");
-                }
-            }
-        });
+    public LiveData<String> getRegisterResult() {
         return registerResult;
     }
+
+    public void register(User user) {
+        // Crea un nuevo ParseUser
+        ParseUser parseUser = new ParseUser();
+        parseUser.setUsername(user.getUsername());
+        parseUser.setPassword(user.getPassword());
+        parseUser.setEmail(user.getEmail());
+
+        // Registra el usuario en Parse
+        parseUser.signUpInBackground(e -> {
+            if (e == null) {
+                Log.d("Registro", "Usuario registrado correctamente."+e);
+                registerResult.setValue("Registro exitoso");
+            } else {
+
+                registerResult.setValue("Error: " + e.getMessage());
+            }
+        });
+    }
 }
+
 
 
 

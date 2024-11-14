@@ -17,16 +17,21 @@ import com.google.android.material.navigation.NavigationBarView;
 public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     final int HOME = R.id.itemHome;
+    private String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        userId = getIntent().getStringExtra("user_id");
+
         binding.bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.itemHome) {
-                    openFragment(HomeFragment.newInstance("",""));
+                    openFragment(HomeFragment.newInstance(userId)); // Pasamos userId aquí
                 } else if (item.getItemId() == R.id.itemChats) {
                     openFragment(new ChatsFragment());
                 } else if (item.getItemId() == R.id.itemPerfil) {
@@ -37,8 +42,10 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
-        openFragment(HomeFragment.newInstance("", ""));
+
+        openFragment(HomeFragment.newInstance(userId)); // Pasa userId aquí también
     }
+
     private void openFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -46,3 +53,4 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 }
+
