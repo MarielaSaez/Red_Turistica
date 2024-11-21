@@ -12,7 +12,6 @@ public class MainViewModelFactory implements ViewModelProvider.Factory {
     public MainViewModelFactory(Context context) {
         this.context = context;
     }
-
     @NonNull
     @Override
     @SuppressWarnings("unchecked")
@@ -20,6 +19,6 @@ public class MainViewModelFactory implements ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(MainViewModel.class)) {
             return (T) new MainViewModel(context);
         }
-        throw new IllegalArgumentException("Unknown ViewModel class");
+        throw new IllegalArgumentException("ViewModel desconocido");
     }
 }

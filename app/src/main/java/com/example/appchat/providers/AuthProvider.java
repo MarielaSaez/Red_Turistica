@@ -1,32 +1,27 @@
 package com.example.appchat.providers;
-import com.example.appchat.R;
+import static com.parse.Parse.getApplicationContext;
 
+import com.example.appchat.R;
 import com.parse.Parse;
 import com.parse.ParseUser;
 import com.parse.ParseException;
-
 import android.content.Context;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.parse.LogInCallback;
-
 public class AuthProvider {
-
-    // Constructor de AuthProvider que recibe un contexto
     public AuthProvider(Context context) {
         Parse.initialize(new Parse.Configuration.Builder(context)
                 .applicationId(context.getString(R.string.back4app_app_id))
                 .clientKey(context.getString(R.string.back4app_client_key))
                 .server(context.getString(R.string.back4app_server_url))
-                .build());
+                .build()
+        );
     }
 
-    // Iniciar sesión con Parse
     public LiveData<String> signIn(String email, String password) {
         MutableLiveData<String> authResult = new MutableLiveData<>();
-
-        // Intentar hacer login
         ParseUser.logInInBackground(email, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
@@ -41,18 +36,15 @@ public class AuthProvider {
                 }
             }
         });
-
         return authResult;
     }
 
     // Registro con Parse
     public LiveData<String> signUp(String email, String password) {
         MutableLiveData<String> authResult = new MutableLiveData<>();
-
         ParseUser user = new ParseUser();
         user.setUsername(email);
         user.setPassword(password);
-
         user.signUpInBackground(e -> {
             if (e == null) {
                 // Registro exitoso
@@ -64,22 +56,35 @@ public class AuthProvider {
                 authResult.setValue(null);
             }
         });
-
         return authResult;
     }
 
-    // Obtener el ID del usuario actual en Parse
     public LiveData<String> getCurrentUserID() {
         MutableLiveData<String> currentUserId = new MutableLiveData<>();
-
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
             currentUserId.setValue(currentUser.getObjectId());
-            Log.d("AuthProvider", "ID de usuario actual: " + currentUser.getObjectId());
-        } else {
-            Log.d("AuthProvider", "No hay usuario autenticado.");
         }
-
         return currentUserId;
     }
+
+    public LiveData<Boolean> logout() {
+        MutableLiveData<Boolean> logoutResult = new MutableLiveData<>();
+        ParseUser.logOutInBackground(e -> {
+            if (e == null) {
+                logoutResult.setValue(true);
+                if (getApplicationContext() != null) {
+                    getApplicationContext().getCacheDir().delete();
+                }
+                Log.d("AuthProvider", "Caché eliminada y usuario desconectado.");
+
+            } else {
+
+                logoutResult.setValue(false);
+                Log.e("AuthProvider", "Error al desconectar al usuario: ", e);
+            }
+        });
+        return logoutResult;
+    }
 }
+

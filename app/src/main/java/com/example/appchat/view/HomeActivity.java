@@ -25,13 +25,13 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        userId = getIntent().getStringExtra("user_id");
+
 
         binding.bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.itemHome) {
-                    openFragment(HomeFragment.newInstance(userId)); // Pasamos userId aquí
+                    openFragment(HomeFragment.newInstance()); // Pasamos userId aquí
                 } else if (item.getItemId() == R.id.itemChats) {
                     openFragment(new ChatsFragment());
                 } else if (item.getItemId() == R.id.itemPerfil) {
@@ -43,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        openFragment(HomeFragment.newInstance(userId)); // Pasa userId aquí también
+        openFragment(HomeFragment.newInstance()); // Pasa userId aquí también
     }
 
     private void openFragment(Fragment fragment) {

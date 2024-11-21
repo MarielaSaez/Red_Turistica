@@ -25,7 +25,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="REGISTRATE AHORA"
+                android:text="@string/registrate"
                 android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -67,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:hint="Nombre de Usuario"
+                    android:hint="@string/nombre_usuario"
                     android:singleLine="true"
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -98,7 +98,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:hint="Correo electrónico"
+                    android:hint="@string/correo"
                     android:singleLine="true"
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -128,7 +128,7 @@
                     android:id="@+id/itPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Contraseña"
+                    android:hint="@string/pass"
                     android:inputType="textPassword">
 
                 </com.google.android.material.textfield.TextInputEditText>
@@ -159,7 +159,7 @@
                     android:id="@+id/itPassword1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Confirmar Contraseña"
+                    android:hint="@string/pass1"
                     android:inputType="textPassword">
 
                 </com.google.android.material.textfield.TextInputEditText>

@@ -6,12 +6,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.appchat.providers.AuthProvider;
 
-
 public class MainViewModel extends ViewModel {
     public final AuthProvider authProvider;
 
     public MainViewModel(Context context){
-
         authProvider=new AuthProvider(context);
     }
 

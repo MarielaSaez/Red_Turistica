@@ -5,6 +5,8 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String fotoperfil;
+    private String[] intereses;
 
     public User() {
         // Constructor vacío necesario para Firebase
@@ -20,6 +22,23 @@ public class User {
         this.email = email;
         this.password = password;
     }
+
+    public String getFotoperfil() {
+        return fotoperfil;
+    }
+
+    public void setFotoperfil(String fotoperfil) {
+        this.fotoperfil = fotoperfil;
+    }
+
+    public String[] getIntereses() {
+        return intereses;
+    }
+
+    public void setIntereses(String[] intereses) {
+        this.intereses = intereses;
+    }
+
     public String getId() {
         return id;
     }

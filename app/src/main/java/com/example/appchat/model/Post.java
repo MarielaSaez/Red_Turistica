@@ -3,53 +3,38 @@ package com.example.appchat.model;
 import java.util.List;
 
 public class Post {
-    private int id_post;
     private String titulo;
     private String descripcion;
     private int duracion;
     private String categoria;
     private double presupuesto;
     private List<String> imagenes;
-    private String id_user;
+
 
     public Post() {}
 
-    public Post(int id_post, String titulo, String descripcion, int duracion, String categoria, double presupuesto, List<String> imagenes, String id_user) {
-        this.id_post = id_post;
+    public Post(String titulo, String descripcion, int duracion, String categoria, double presupuesto) {
+
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.duracion = duracion;
+        this.categoria = categoria;
+        this.presupuesto = presupuesto;
+
+
+    }
+
+    public Post(String titulo, String descripcion, int duracion, String categoria, double presupuesto, List<String> imagenes) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.duracion = duracion;
         this.categoria = categoria;
         this.presupuesto = presupuesto;
         this.imagenes = imagenes;
-        this.id_user = id_user;
+
     }
 
-    public int getId_post() {
-        return id_post;
-    }
 
-    public void setId_post(int id_post) {
-        this.id_post = id_post;
-    }
-
-    public Post(String titulo, String descripcion, int duracion, String categoria, double presupuesto, List<String> imagenes, String id_user) {
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.duracion = duracion;
-        this.categoria = categoria;
-        this.presupuesto = presupuesto;
-        this.imagenes = imagenes;
-        this.id_user = id_user;
-    }
-
-    public String getId_user() {
-        return id_user;
-    }
-
-    public void setId_user(String id_user) {
-        this.id_user = id_user;
-    }
     public String getCategoria() {
         return categoria;
     }
