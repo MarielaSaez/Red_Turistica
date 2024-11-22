@@ -17,12 +17,10 @@ public class MyApplication extends Application {
                 .server(getString(R.string.back4app_server_url))
                 .build()
         );
-
         ParseACL defaultACL = new ParseACL();
         defaultACL.setPublicReadAccess(true);
         defaultACL.setPublicWriteAccess(true);
         ParseACL.setDefaultACL(defaultACL, true);
-
     }
 }
 

@@ -1,19 +1,15 @@
 package com.example.appchat.adapters;
 import com.example.appchat.R;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
 import com.example.appchat.model.Post;
-
+import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
@@ -42,22 +38,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
 
         if (post.getImagenes().size() > 0) {
-            Log.d("PostAdapter", "tengo: "+post.getImagenes().get(0));
-            Glide.with(holder.ivImage1.getContext())
+            Picasso.get()
                     .load(post.getImagenes().get(0))
                     .into(holder.ivImage1);
             holder.ivImage1.setVisibility(View.VISIBLE);
         }
 
         if (post.getImagenes().size() > 1) {
-            Glide.with(holder.ivImage2.getContext())
+            Picasso.get()
                     .load(post.getImagenes().get(1)) // Cargar la segunda imagen
                     .into(holder.ivImage2);
             holder.ivImage2.setVisibility(View.VISIBLE);
         }
 
         if (post.getImagenes().size() > 2) {
-            Glide.with(holder.ivImage3.getContext())
+            Picasso.get()
                     .load(post.getImagenes().get(2)) // Cargar la tercera imagen
                     .into(holder.ivImage3);
             holder.ivImage3.setVisibility(View.VISIBLE);

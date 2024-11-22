@@ -1,15 +1,12 @@
 package com.example.appchat.adapters;
 import com.example.appchat.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,7 +28,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         String imageUrl = imageUrls.get(position);
-        Glide.with(context)
+        Picasso.get()
                 .load(imageUrl)  // Usar la URL de la imagen
                 .into(holder.imageView);  // Asignar a la vista de imagen
     }
@@ -41,7 +38,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         return imageUrls.size();
     }
 
-    // Método para actualizar las imágenes en el adaptador
+
     public void updateImages(List<String> newImageUrls) {
         this.imageUrls = newImageUrls;
         notifyDataSetChanged();  // Notificar al RecyclerView que los datos han cambiado
