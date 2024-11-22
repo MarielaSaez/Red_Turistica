@@ -12,7 +12,6 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class PostProvider {
     public LiveData<String> addPost(Post post) {
         MutableLiveData<String> result = new MutableLiveData<>();
@@ -53,16 +52,13 @@ public class PostProvider {
 
     public LiveData<List<Post>> getPostsByCurrentUser() {
         MutableLiveData<List<Post>> result = new MutableLiveData<>();
-
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser == null) {
             result.setValue(new ArrayList<>());
-            return result;
-        }
-
+            return result;}
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Post");
-        query.whereEqualTo("user", currentUser); // Filtrar por el usuario actual
-        query.include("user"); // Incluir la relación de usuario si es necesario
+        query.whereEqualTo("user", currentUser);
+        query.include("user");
         query.findInBackground((posts, e) -> {
             if (e == null) {
                 List<Post> postList = new ArrayList<>();
@@ -74,8 +70,7 @@ public class PostProvider {
                             postObject.getString("categoria"),
                             postObject.getDouble("presupuesto")
                     );
-                    Log.d("PostProvider ", "post: "+post.getTitulo()+post.getCategoria());
-                    // Agregar imágenes (si las necesitas en este paso)
+                   // Log.d("PostProvider ", "post: "+post.getTitulo()+post.getCategoria());
                     ParseRelation<ParseObject> relation = postObject.getRelation("images");
                     try {
                         List<ParseObject> images = relation.getQuery().find();
@@ -84,23 +79,16 @@ public class PostProvider {
                             imageUrls.add(imageObject.getString("url"));
                         }
                         post.setImagenes(imageUrls);
-                        Log.d("PostProvider ", "img: "+post.getImagenes());
+                       // Log.d("PostProvider ", "img: "+post.getImagenes());
                     } catch (ParseException parseException) {
-                        parseException.printStackTrace();
-                    }
-
-                    postList.add(post);
-                }
+                        parseException.printStackTrace(); }
+                    postList.add(post); }
                 result.setValue(postList);
             } else {
                 result.setValue(new ArrayList<>());
-                Log.e("ParseError", "Error al recuperar los posts: ", e);
-            }
+                Log.e("ParseError", "Error al recuperar los posts: ", e);}
         });
-
-        return result;
-    }
-
+        return result;}
 }
 
 

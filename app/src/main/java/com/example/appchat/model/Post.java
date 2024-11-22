@@ -20,10 +20,7 @@ public class Post {
         this.duracion = duracion;
         this.categoria = categoria;
         this.presupuesto = presupuesto;
-
-
     }
-
     public Post(String titulo, String descripcion, int duracion, String categoria, double presupuesto, List<String> imagenes) {
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -31,9 +28,7 @@ public class Post {
         this.categoria = categoria;
         this.presupuesto = presupuesto;
         this.imagenes = imagenes;
-
     }
-
 
     public String getCategoria() {
         return categoria;

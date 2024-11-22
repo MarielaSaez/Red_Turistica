@@ -25,9 +25,6 @@
             android:name=".view.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".view.UserActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.RegisterActivity"
             android:exported="false" />
         <activity
@@ -46,7 +43,7 @@
             android:value="@string/back4app_app_id" />
         <meta-data
             android:name="com.parse.CLIENT_KEY"
-            android:value="um19Fl8kW30QF91Q02m2U1TgRbZ8qW3Iwh7IFw52" />
+            android:value="@string/back4app_client_key" />
 
     </application>
     <uses-sdk android:minSdkVersion="4" />

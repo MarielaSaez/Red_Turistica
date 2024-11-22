@@ -11,7 +11,7 @@ public class Validaciones {
     public static int validarNumero(String numero) {
         try {
             int valor = Integer.parseInt(numero);
-            return valor >= 0 ? valor : -1; // Retorna el número si es positivo; de lo contrario, retorna -1
+            return valor >= 0 ? valor : -1;
         } catch (NumberFormatException e) {
             return -1; // Retorna -1 si no es un número válido
         }

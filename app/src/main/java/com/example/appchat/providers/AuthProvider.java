@@ -1,6 +1,5 @@
 package com.example.appchat.providers;
 import static com.parse.Parse.getApplicationContext;
-
 import com.example.appchat.R;
 import com.parse.Parse;
 import com.parse.ParseUser;
@@ -19,7 +18,6 @@ public class AuthProvider {
                 .build()
         );
     }
-
     public LiveData<String> signIn(String email, String password) {
         MutableLiveData<String> authResult = new MutableLiveData<>();
         ParseUser.logInInBackground(email, password, new LogInCallback() {
@@ -38,7 +36,6 @@ public class AuthProvider {
         });
         return authResult;
     }
-
     // Registro con Parse
     public LiveData<String> signUp(String email, String password) {
         MutableLiveData<String> authResult = new MutableLiveData<>();
@@ -58,7 +55,6 @@ public class AuthProvider {
         });
         return authResult;
     }
-
     public LiveData<String> getCurrentUserID() {
         MutableLiveData<String> currentUserId = new MutableLiveData<>();
         ParseUser currentUser = ParseUser.getCurrentUser();
@@ -67,7 +63,6 @@ public class AuthProvider {
         }
         return currentUserId;
     }
-
     public LiveData<Boolean> logout() {
         MutableLiveData<Boolean> logoutResult = new MutableLiveData<>();
         ParseUser.logOutInBackground(e -> {
