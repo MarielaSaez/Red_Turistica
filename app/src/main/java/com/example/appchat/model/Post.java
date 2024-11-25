@@ -11,8 +11,6 @@ public class Post {
     private List<String> imagenes;
 
 
-    public Post() {}
-
     public Post(String titulo, String descripcion, int duracion, String categoria, double presupuesto) {
 
         this.titulo = titulo;

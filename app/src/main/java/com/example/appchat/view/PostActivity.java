@@ -60,10 +60,9 @@ public class PostActivity extends AppCompatActivity {
 
     private void setupViewModels() {
         postViewModel = new ViewModelProvider(this).get(PostViewModel.class);
-        postViewModel.getPostSuccess().observe(this, success -> {
-            String message = success ? "Post publicado con éxito" : "Error al publicar";
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-            if (success) finish();
+        postViewModel.getPostSuccess().observe(this, exito -> {
+            Toast.makeText(this, exito, Toast.LENGTH_SHORT).show();
+            finish();
         });
     }
 
@@ -113,10 +112,7 @@ public class PostActivity extends AppCompatActivity {
                     }
                 }
         );
-        binding.uploadImage.setOnClickListener(v -> {
-
-            ImageUtils.pedirPermisos(PostActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_IMAGE);
-        });
+        binding.uploadImage.setOnClickListener(v -> ImageUtils.pedirPermisos(PostActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_IMAGE));
     }
 
     private void publicarPost() {

@@ -23,6 +23,9 @@
     <string name="publicar">Publicar</string>
     <string name="actualizar">Actualizar Perfil</string>
     <string name="transtionname_picture">transitionnamepicture</string>
+    <string name="err_pass">La contraseña no puede estar vacía</string>
+    <string name="err_pass1">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="err_pass2">Las contraseñas no coinciden</string>
     <string-array name="categorias_array">
         <item>Naturaleza</item>
         <item>Montaña</item>

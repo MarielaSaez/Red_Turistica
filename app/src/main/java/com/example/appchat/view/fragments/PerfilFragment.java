@@ -15,9 +15,7 @@ import com.example.appchat.R;
 import com.example.appchat.databinding.FragmentPerfilBinding;
 import com.example.appchat.util.ImageUtils;
 import com.squareup.picasso.Picasso;
-import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -42,7 +40,6 @@ public class PerfilFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPerfilBinding.inflate(inflater, container, false);
-
         setupMenu();
         setupToolbar();
         displayUserInfo();

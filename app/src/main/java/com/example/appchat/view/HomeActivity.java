@@ -16,17 +16,12 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
-    final int HOME = R.id.itemHome;
-    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
-
         binding.bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -42,7 +37,6 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
-
         openFragment(HomeFragment.newInstance()); // Pasa userId aquí también
     }
 

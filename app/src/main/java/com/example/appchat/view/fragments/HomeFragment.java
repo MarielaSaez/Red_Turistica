@@ -1,8 +1,7 @@
 package com.example.appchat.view.fragments;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,15 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.example.appchat.R;
 import com.example.appchat.adapters.PostAdapter;
 import com.example.appchat.databinding.FragmentHomeBinding;
-import com.example.appchat.providers.AuthProvider;
 import com.example.appchat.view.MainActivity;
 import com.example.appchat.view.PostActivity;
+import com.example.appchat.viewmodel.AuthViewModel;
 import com.example.appchat.viewmodel.PostViewModel;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuProvider;
@@ -30,8 +27,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
-    private AuthProvider authProvider;
-    private PostViewModel postViewModel; // ViewModel que gestionará los posts
+    private PostViewModel postViewModel; // ViewModel para los posts
+    private AuthViewModel authViewModel; // ViewModel para autenticación
 
     public HomeFragment() {
         // Constructor vacío requerido
@@ -44,34 +41,34 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        authProvider = new AuthProvider(getContext());
-        postViewModel = new ViewModelProvider(this).get(PostViewModel.class);  // Obtener el ViewModel
+        postViewModel = new ViewModelProvider(this).get(PostViewModel.class); // ViewModel para posts
+        authViewModel = new ViewModelProvider(this).get(AuthViewModel.class); // ViewModel para autenticación
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // barra de herramientas
+        // Configurar barra de herramientas
         ((AppCompatActivity) requireActivity()).setSupportActionBar(binding.tools);
 
-        // abrir PostActivity
+        // Configurar FloatingActionButton para abrir PostActivity
         binding.fab.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), PostActivity.class);
             startActivity(intent);
         });
 
-        // RecyclerView
+        // Configurar RecyclerView
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Observar vm de los posts
+        // Observar los posts desde el ViewModel
         postViewModel.getPosts().observe(getViewLifecycleOwner(), posts -> {
             if (posts != null) {
                 PostAdapter adapter = new PostAdapter(posts);
@@ -79,6 +76,7 @@ public class HomeFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+
         setupMenu();
     }
 
@@ -92,18 +90,7 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.itemLogout) {
-                    authProvider.logout().observe(getViewLifecycleOwner(), logoutResult -> {
-                        if (logoutResult != null && logoutResult) {
-                            Log.d("AuthProvider", "Cierre de sesión exitoso, redirigiendo a MainActivity...");
-                            Intent intent = new Intent(getContext(), MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtra("fromLogout", true);
-                            startActivity(intent);
-                        } else {
-                            Log.e("AuthProvider", "Error al cerrar sesión.");
-                            Toast.makeText(getContext(), "Error al cerrar sesión. Intenta nuevamente.", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    onLogout();
                     return true;
                 }
                 return false;
@@ -111,11 +98,24 @@ public class HomeFragment extends Fragment {
         }, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
     }
 
+    private void onLogout() {
+        authViewModel.logout().observe(getViewLifecycleOwner(), logoutResult -> {
+            if (logoutResult != null && logoutResult) {
+
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            } else {
+
+                Toast.makeText(getContext(), "Error al cerrar sesión. Intenta nuevamente.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        // Limpiar el binding para evitar fugas de memoria
-        binding = null;
+        binding = null; // Evitar fugas de memoria
     }
 }
 
