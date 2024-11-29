@@ -26,30 +26,6 @@
         android:paddingBottom="8dp" />
 
     <!-- Imagen 1 -->
-    <ImageView
-        android:id="@+id/ivImage1"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginBottom="8dp"
-        android:scaleType="fitCenter"
-        android:visibility="gone" />
-
-    <!-- Imagen 2 -->
-    <ImageView
-        android:id="@+id/ivImage2"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginBottom="8dp"
-        android:scaleType="fitCenter"
-        android:visibility="gone" />
-
-    <!-- Imagen 3 -->
-    <ImageView
-        android:id="@+id/ivImage3"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="fitCenter"
-        android:visibility="gone" />
-
+     
 </LinearLayout>
 
