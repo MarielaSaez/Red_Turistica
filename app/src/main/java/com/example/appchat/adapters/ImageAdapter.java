@@ -41,7 +41,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     public void updateImages(List<String> newImageUrls) {
         this.imageUrls = newImageUrls;
-        notifyDataSetChanged();  // Notificar al RecyclerView que los datos han cambiado
+        notifyDataSetChanged();
     }
 
     public static class ImageViewHolder extends RecyclerView.ViewHolder {

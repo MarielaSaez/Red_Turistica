@@ -1,5 +1,6 @@
 package com.example.appchat.view;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +30,8 @@ public class RegisterActivity extends AppCompatActivity {
         binding.btRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                realizarRegistro();  }
+                realizarRegistro();
+            }
         });
     }
 
@@ -52,10 +54,18 @@ public class RegisterActivity extends AppCompatActivity {
             showToast(passError);
             return;
         }
-        User user = new User(usuario, email, pass);
+
+        User user = new User();
+        user.setRedSocial(email);
+        user.setUsername(usuario);
+        user.setPassword(pass);
+        Log.d("RegisterActivity", "Usuario registrado: " + usuario + ", Email: " + email+" pass: "+pass);
         viewModel.register(user);
     }
+
     private void showToast(String message) {
-        Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+        if (message != null) {
+            Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+        }
     }
 }

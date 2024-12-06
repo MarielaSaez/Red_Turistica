@@ -1,7 +1,7 @@
 package com.example.appchat.view.fragments;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.appchat.R;
 import com.example.appchat.adapters.PostAdapter;
 import com.example.appchat.databinding.FragmentHomeBinding;
+import com.example.appchat.view.HomeActivity;
 import com.example.appchat.view.MainActivity;
 import com.example.appchat.view.PostActivity;
 import com.example.appchat.viewmodel.AuthViewModel;
@@ -41,8 +42,8 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        postViewModel = new ViewModelProvider(this).get(PostViewModel.class); // ViewModel para posts
-        authViewModel = new ViewModelProvider(this).get(AuthViewModel.class); // ViewModel para autenticación
+        postViewModel = new ViewModelProvider(this).get(PostViewModel.class);
+        authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
     }
 
     @Override
@@ -51,7 +52,6 @@ public class HomeFragment extends Fragment {
         return binding.getRoot();
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -59,7 +59,6 @@ public class HomeFragment extends Fragment {
         // Configurar barra de herramientas
         ((AppCompatActivity) requireActivity()).setSupportActionBar(binding.tools);
 
-        // Configurar FloatingActionButton para abrir PostActivity
         binding.fab.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), PostActivity.class);
             startActivity(intent);
@@ -68,14 +67,19 @@ public class HomeFragment extends Fragment {
         // Configurar RecyclerView
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Observar los posts desde el ViewModel
         postViewModel.getPosts().observe(getViewLifecycleOwner(), posts -> {
-            if (posts != null) {
+            if (posts != null && !posts.isEmpty()) {
+                Log.d("HomeFragment", "Número de posts: " + posts.size());
                 PostAdapter adapter = new PostAdapter(posts);
                 binding.recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+                ((HomeActivity) requireActivity()).hideProgressBar();
+            } else {
+                Log.d("HomeFragment", "No hay posts disponibles.");
+                ((HomeActivity) requireActivity()).hideProgressBar();
             }
         });
+
 
         setupMenu();
     }

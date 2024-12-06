@@ -29,7 +29,7 @@ public class PostViewModel extends ViewModel {
     }
 
     public LiveData<List<Post>> getPosts() {
-        posts = postProvider.getPostsByCurrentUser();
+        posts = postProvider.getAllPosts();
         return posts;
     }
 }

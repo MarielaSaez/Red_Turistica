@@ -1,66 +1,71 @@
 package com.example.appchat.model;
+import android.util.Log;
 
-public class User {
-    private String id;
-    private String username;
-    private String email;
-    private String password;
-    private String fotoperfil;
-    private String[] intereses;
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
+
+@ParseClassName("User")
+public class User extends ParseObject {
 
     public User() {
-        // Constructor vacío necesario para Firebase
-    }
-    public User(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
-    public User(String id, String username, String email, String password) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+        // Constructor vacío necesario para Parse
     }
 
+    // Getter y setter para "redSocial"
+    public String getRedSocial() {
+        return getString("redSocial");
+    }
+
+    public void setRedSocial(String redSocial) {
+        if (redSocial != null) {
+            put("redSocial", redSocial);
+        }
+    }
+
+    // Getter y setter para "fotoperfil"
     public String getFotoperfil() {
-        return fotoperfil;
+        return getString("fotoperfil");
     }
 
     public void setFotoperfil(String fotoperfil) {
-        this.fotoperfil = fotoperfil;
+        if (fotoperfil != null) {
+            put("fotoperfil", fotoperfil);
+        }
     }
 
-    public String[] getIntereses() {
-        return intereses;
-    }
-
-    public void setIntereses(String[] intereses) {
-        this.intereses = intereses;
-    }
-
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
+    // Getter y setter para "username"
     public String getUsername() {
-        return username;
+        return getString("username");
     }
+
     public void setUsername(String username) {
-        this.username = username;
+        put("username", username);
     }
+
+    // Getter y setter para "email"
     public String getEmail() {
-        return email;
+        return getString("email");
     }
+
     public void setEmail(String email) {
-        this.email = email;
+        if (email != null) {
+            put("email", email);
+        } else {
+            Log.w("User", "El correo electrónico es nulo.");
+        }
     }
+
+    // Getter y setter para "password"
     public String getPassword() {
-        return password;
+        return getString("password");
     }
+
     public void setPassword(String password) {
-        this.password = password;
+        put("password", password);
+    }
+
+    // Getter para "id" (no necesitas un setter para "id" porque Parse lo genera automáticamente)
+    public String getId() {
+        return getObjectId();
     }
 }

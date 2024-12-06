@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".view.HomeActivity">
+    tools:context=".view.HomeActivity"
+    >
 
         <FrameLayout
             android:id="@+id/container"
@@ -16,8 +17,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="176dp"
-
-            android:gravity="bottom"
+            android:id="@+id/main_cont"
+            android:gravity="center"
             android:padding="16dp"
             android:orientation="vertical"
             android:theme="@style/ThemeOverlay.AppCompat.Dark">

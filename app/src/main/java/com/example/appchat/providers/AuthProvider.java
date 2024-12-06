@@ -1,5 +1,7 @@
 package com.example.appchat.providers;
+
 import com.example.appchat.model.User;
+
 import com.parse.ParseUser;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
@@ -28,10 +30,21 @@ public class AuthProvider {
     public LiveData<String> signUp(User user) {
         MutableLiveData<String> authResult = new MutableLiveData<>();
 
+        if (user.getUsername() == null || user.getPassword() == null || user.getEmail() == null) {
+            Log.e("AuthProvider", "Uno o más valores son nulos: " +
+                    "Username=" + user.getUsername() + ", " +
+                    "Password=" + user.getPassword() + ", " +
+                    "Email=" + user.getEmail());
+            authResult.setValue(null);
+            return authResult;
+        }
+
         ParseUser parseUser = new ParseUser();
-        parseUser.setUsername(user.getUsername());
-        parseUser.setPassword(user.getPassword());
-        parseUser.setEmail(user.getEmail());
+        parseUser.setUsername(user.getUsername() != null ? user.getUsername() : "defaultUsername");
+        parseUser.setPassword(user.getPassword() != null ? user.getPassword() : "defaultPassword");
+        parseUser.setEmail(user.getEmail() != null ? user.getEmail() : "default@example.com");
+
+
         parseUser.signUpInBackground(e -> {
             if (e == null) {
                 // Registro exitoso
@@ -45,14 +58,8 @@ public class AuthProvider {
         });
         return authResult;
     }
-    public LiveData<String> getCurrentUserID() {
-        MutableLiveData<String> currentUserId = new MutableLiveData<>();
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        if (currentUser != null) {
-            currentUserId.setValue(currentUser.getObjectId());
-        }
-        return currentUserId;
-    }
+
+
     public LiveData<Boolean> logout() {
         MutableLiveData<Boolean> logoutResult = new MutableLiveData<>();
         ParseUser.logOutInBackground(e -> {

@@ -24,6 +24,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import com.example.appchat.model.Post;
 import com.example.appchat.util.Validaciones;
+import com.parse.ParseObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,14 +97,14 @@ public class PostActivity extends AppCompatActivity {
                             ImageUtils.subirImagenAParse(PostActivity.this, imageUri, new ImageUtils.ImageUploadCallback() {
                                 @Override
                                 public void onSuccess(String imageUrl) {
-                                   // Log.d("PostActivity", "Imagen subida con éxito: " + imageUrl);
+                                   Log.d("PostActivity", "Imagen subida con éxito: " + imageUrl);
                                     imagenesUrls.add(imageUrl);
                                     adapter.notifyDataSetChanged();
                                     updateRecyclerViewVisibility();
                                 }
                                 @Override
                                 public void onFailure(Exception e) {
-                                   // Log.e("PostActivity", "Error al subir la imagen", e);
+                                   Log.e("PostActivity", "Error al subir la imagen", e);
                                     Toast.makeText(PostActivity.this, "Error al subir la imagen", Toast.LENGTH_SHORT).show();
                                 }
                             });
@@ -142,8 +144,14 @@ public class PostActivity extends AppCompatActivity {
             binding.etPresupuesto.setError("Presupuesto no válido");
             return;
         }
-
-        Post post = new Post(titulo, descripcion, duracion, categoria, presupuesto, new ArrayList<>(imagenesUrls));
+        Post post = new Post();
+        post.setTitulo(titulo);
+        post.setDescripcion(descripcion);
+        post.setDuracion(duracion);
+        post.setCategoria(categoria);
+        post.setPresupuesto(presupuesto);
+        post.setImagenes(new ArrayList<>(imagenesUrls));
+       // Post post = new Post(titulo, descripcion, duracion, categoria, presupuesto, new ArrayList<>(imagenesUrls));
         postViewModel.publicar(post);
     }
 

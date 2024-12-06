@@ -1,5 +1,7 @@
 package com.example.appchat.util;
 
+import android.util.Log;
+
 public class Validaciones {
     public static boolean validarTexto(String texto) {
         return texto != null
@@ -23,6 +25,7 @@ public class Validaciones {
     }
 
     public static String validarPass(String pass, String pass1) {
+        Log.d("datos", pass+"-"+pass1);
         if (pass == null || pass.isEmpty() || pass1 == null || pass1.isEmpty()) {
             return "La contraseña no puede estar vacía";
         }

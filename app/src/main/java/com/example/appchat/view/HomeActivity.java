@@ -1,6 +1,10 @@
 package com.example.appchat.view;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.appchat.R;
@@ -22,6 +26,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //agrego un progress bar carando datos
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View progressBarLayout = inflater.inflate(R.layout.progress_layout, binding.mainCont, false);
+        binding.mainCont.addView(progressBarLayout);
+        //
+
         binding.bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -45,6 +56,13 @@ public class HomeActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container, fragment);
         fragmentTransaction.commit();
+    }
+
+    public void hideProgressBar() {
+        View progressBarLayout = findViewById(R.id.progress_layout);
+        if (progressBarLayout != null) {
+            progressBarLayout.setVisibility(View.GONE);
+        }
     }
 }
 
